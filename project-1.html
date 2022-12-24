@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Case Study of Project 1</title>
+    <title>Case Study of Project 1 a</title>
     <meta name="description" content="Case study page of Project" />
 
     <link rel="stylesheet" href="css/style.css" />
@@ -20,14 +20,7 @@
     <header class="header">
       <div class="header__content">
         <div class="header__logo-container">
-          <div class="header__logo-img-cont">
-            <img
-              src="./assets/png/john-doe.png"
-              alt="Ram Maheshwari Logo Image"
-              class="header__logo-img"
-            />
-          </div>
-          <span class="header__logo-sub">John Doe</span>
+          <span class="header__logo-sub">Tristan Wartan</span>
         </div>
         <div class="header__main">
           <ul class="header__links">
@@ -84,80 +77,115 @@
     </header>
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
-        <h1 class="heading-primary">Project 1</h1>
+        <h1 class="heading-primary">Cybersecurity Homelab</h1>
         <div class="project-cs-hero__info">
           <p class="text-primary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            Lorem ipsum dolor sit amet but as consectetur adipisicing elit. Dignissimos
             in numquam incidunt earum quaerat cum fuga, atque similique natus
             nobis sit.
           </p>
         </div>
-        <div class="project-cs-hero__cta">
-          <a href="#" class="btn btn--bg" target="_blank">Live Link</a>
-        </div>
+        <div class="project-details__tools-used">
+          <h3 class="project-details__content-title">Tools Used</h3>
+          <div class="tools">
+            <div class="tools__tool">pfSense</div>
+            <div class="tools__tool">HyperV</div>
+            <div class="tools__tool">VMware vSphere</div>
+            <div class="tools__tool">Windows Server 2019</div>
+            <div class="tools__tool">Windows 10 Enterprise</div>
+            <div class="tools__tool">Security Onion</div>
+            
+          </div>
+
       </div>
     </section>
     <section class="project-details">
       <div class="main-container">
-        <div class="project-details__content">
-          <div class="project-details__showcase-img-cont">
-            <img
-              src="./assets/jpeg/project-mockup-example.jpeg"
-              alt="Project Image"
-              class="project-details__showcase-img"
-            />
-          </div>
           <div class="project-details__content-main">
             <div class="project-details__desc">
-              <h3 class="project-details__content-title">Project Overview</h3>
+              <h3 class="project-details__content-title">Building a Cybersecurity Homelab</h3>
               <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Neque alias tenetur minus quaerat
-                aliquid, aut provident blanditiis, deleniti aspernatur ipsam
-                eaque veniam voluptatem corporis vitae mollitia laborum corrupti
-                ullam rem?
+                For this project, the goal is to simulate a enterprise network that we can then monitor and test for vulnerabilities.
+                This guide will walk through configuring, optimizing, and securing an I.T. environment.
               </p>
-              <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem?
-              </p>
-            </div>
-            <div class="project-details__tools-used">
-              <h3 class="project-details__content-title">Tools Used</h3>
-              <div class="skills">
-                <div class="skills__skill">HTML</div>
-                <div class="skills__skill">CSS</div>
-                <div class="skills__skill">JavaScript</div>
-                <div class="skills__skill">React</div>
-                <div class="skills__skill">SASS</div>
-                <div class="skills__skill">GIT</div>
-                <div class="skills__skill">Shopify</div>
-                <div class="skills__skill">Wordpress</div>
-                <div class="skills__skill">Google ADS</div>
-                <div class="skills__skill">Facebook Ads</div>
-                <div class="skills__skill">Android</div>
-                <div class="skills__skill">IOS</div>
-              </div>
             </div>
             <div class="project-details__links">
-              <h3 class="project-details__content-title">See Live</h3>
-              <a
-                href="#"
-                class="btn btn--med btn--theme project-details__links-btn"
-                target="_blank"
-                >Live Link</a
-              >
-              <a
-                href="#"
-                class="btn btn--med btn--theme-inv project-details__links-btn"
-                target="_blank"
-                >Code Link</a
-              >
+              <h3 class="project-details__content-title">Materials Used</h3>
+
+                <ul class="material-list">
+                  <li>-PC running pfSense (Core 2 Duo, 4gb Ram, 500gb HDD)</li>
+                  <li>-PC running HyperV (Ryzen 7 5800x, 3080ti, 64gb RAM, 2tb NVME SSD)</li>
+                  <li>-PC running vSphere (i7 8700, 1080ti, 16gb RAM, 500gb NVME SSD)</li>
+                  <li>-USB device</li>
+                  <li>-Managed Switch</li>
+                </ul>
+              </p>
+
+            <div class="project-details__links">
+              <h3 class="project-details__content-title">Creating a topology diagram</h3>
+              <p class="project-details__desc-para">
+                To start, it is important to create a topology diagram of the network help outline what devices will be placed inside the network
+                and how they will be connected to eachother.
+              </p>
+              <div class="project-details__showcase-img-cont">
+                <img
+                  src="./assets/png/networkdiagram.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+            
+            <div class="project-details__links">
+              <h3 class="project-details__content-title">Setting up pfSense</h3>
+              <p class="project-details__desc-para">
+                PfSense is a free router and firewall solution. This will be used to segment my home network and create a seperate subnet.
+                In addition firewall rules will be created to increase the security of the network later on. To start, downloaded the ISO image
+                from pfSense's website and create a bootable USB using Rufus.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/rufus-pfsense.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+            </div>      
+            <div class="project-details__links">
+              <p class="project-details__desc-para">
+                After creating the bootable USB, plug the USB stick into the machine that we will be installing pfSense on.
+                Change the boot order in the computer's BIOS to boot from the USB stick.
+                pfSense will now start it's installation setup.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/pfsense-installer.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Accept all defaults and select a drive to install pfSense to. This will erase all data on the existing drive.
+                Once complete you should see this screen. Ensure that you have both a WAN and LAN IP address. The LAN IP will Server
+                as the IP for management.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/pfsense-shell.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+            <div class="project-details__links">
+              <h3 class="project-details__content-title">Configuring pfSense</h3>
+              <p class="project-details__desc-para">
+                Next, we will configure pfSense to allow internet access for internal devices. Open a web browser and type in
+                the IP address 192.168.1.1 into the URL bar. This is the pfSense configuration page.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+            </div>      
             </div>
           </div>
         </div>
@@ -209,18 +237,18 @@
             </div>
           </div>
           <div class="main-footer__row main-footer__row-2">
-            <h4 class="heading heading-sm text-lt">John Doe</h4>
-            <p class="main-footer__short-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit facilis
+            <h4 class="heading heading-sm text-lt">Tristan Wartan</h4>
+            <!--p class="main-footer__short-desc">
+              Lorem ipsum dolor sit amet but consectetur adipisicing elit facilis
               tempora explicabo quae quod deserunt
-            </p>
+            </p-->
           </div>
         </div>
 
         <div class="main-footer__lower">
-          &copy; Copyright 2021. Made by
-          <a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"
-            >Ram Maheshwari</a
+          &copy; Copyright 2022. Made by
+          <!--a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"-->
+            Tristan Wartan.</a
           >
         </div>
       </div>
