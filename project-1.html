@@ -106,7 +106,7 @@
               <h3 class="project-details__content-title">Building a Cybersecurity Homelab</h3>
               <p class="project-details__desc-para">
                 For this project, the goal is to simulate a enterprise network that we can then monitor and test for vulnerabilities.
-                This guide will walk through configuring, optimizing, and securing an I.T. environment.
+                This guide will walk through configuring, optimizing, and securing an I.T. environment. 
               </p>
             </div>
             <div class="project-details__links">
@@ -117,7 +117,7 @@
                   <li>-PC running HyperV (Ryzen 7 5800x, 3080ti, 64gb RAM, 2tb NVME SSD)</li>
                   <li>-PC running vSphere (i7 8700, 1080ti, 16gb RAM, 500gb NVME SSD)</li>
                   <li>-USB device</li>
-                  <li>-Managed Switch</li>
+                  <li>-Managed Switch w/ Span port</li>
                 </ul>
               </p>
 
@@ -125,7 +125,8 @@
               <h3 class="project-details__content-title">Creating a topology diagram</h3>
               <p class="project-details__desc-para">
                 To start, it is important to create a topology diagram of the network help outline what devices will be placed inside the network
-                and how they will be connected to eachother.
+                and how they will be connected to eachother. In my setup, I am using a dedicated computer for pfSense. However, I will be using 
+                Hyper-V to host several Windows machines and vSphere to host Security Onion.
               </p>
               <div class="project-details__showcase-img-cont">
                 <img
@@ -138,8 +139,12 @@
               <h3 class="project-details__content-title">Setting up pfSense</h3>
               <p class="project-details__desc-para">
                 PfSense is a free router and firewall solution. This will be used to segment my home network and create a seperate subnet.
-                In addition firewall rules will be created to increase the security of the network later on. To start, downloaded the ISO image
-                from pfSense's website and create a bootable USB using Rufus.
+                In addition firewall rules will be created to increase the security of the network later on. Ensure that there are two interaces present
+                on the computer. One will be used as a LAN interface and the other will be used as a WAN interface to allow internal devices to connect to
+                the web.
+              </p>
+              <p class="project-details__desc-para">
+                To start, downloaded the ISO image from pfSense's website and create a bootable USB using Rufus.
               </p>
               <div class="project-details__showcase-img-rufus-pfsense">
                 <img
@@ -162,8 +167,7 @@
                 />
               </div>
               <p class="project-details__desc-para">
-                Accept all defaults and select a drive to install pfSense to. This will erase all data on the existing drive.
-                Once complete you should see this screen. Ensure that you have both a WAN and LAN IP address. The LAN IP will Server
+                Accept all defaults and select a drive to install pfSense to. Ensure that you have both a WAN and LAN IP address. The LAN IP will Server
                 as the IP for management.
               </p>
               <div class="project-details__showcase-img-rufus-pfsense">
@@ -173,19 +177,31 @@
                   class="project-details__showcase-img"
                 />
               </div>
-            <div class="project-details__links">
-              <h3 class="project-details__content-title">Configuring pfSense</h3>
               <p class="project-details__desc-para">
-                Next, we will configure pfSense to allow internet access for internal devices. Open a web browser and type in
-                the IP address 192.168.1.1 into the URL bar. This is the pfSense configuration page.
+                This completes the basic configuration of pfSense. The rest of the configuration will be done later on
+                in pfSense's configuration webpage.
+              </p>
+            <div class="project-details__links">
+              <h3 class="project-details__content-title">Installing HyperV and Windows Server 2019</h3>
+              <p class="project-details__desc-para">
+                In an enterprise network, servers can be installed on a hypervisor. This allows for easier deployment and the ability
+                to backup a server through the hypervisor. In our lab, we will be using Hyper-V to host Windows Server 2019 and additional Windows
+                10 machines.
+              </p>
+              <p class="project-details__desc-para">
+                To start, we will first need to install Hyper-V on the host machine. My host machine is running Windows 11 Pro. It is important to
+                note that Hyper-V cannot be installed on Windows 10/11 Home. First, we need to ensure that Hyper-V is enabled in Windows Features.
               </p>
               <div class="project-details__showcase-img-rufus-pfsense">
                 <img
-                  src="./assets/png/"
+                  src="./assets/png/windowsfeatures-hyperv.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
-            </div>      
+            </div>
+            <p class="project-details__desc-para">
+              Once Hyper-V is enabled, open Hyper-V by searching in the Windows menu, then click Hyper-V Manager
+            </p>
             </div>
           </div>
         </div>
