@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Case Study of Project 1 a</title>
+    <title>Cybersecurity Homelab</title>
     <meta name="description" content="Case study page of Project" />
 
     <link rel="stylesheet" href="css/style.css" />
@@ -106,7 +106,7 @@
               <h3 class="project-details__content-title">Building a Cybersecurity Homelab</h3>
               <p class="project-details__desc-para">
                 For this project, the goal is to simulate a enterprise network that we can then monitor and test for vulnerabilities.
-                This guide will walk through configuring, optimizing, and securing an I.T. environment. 
+                This guide will walk through configuring, optimizing, and securing an I.T. environment for a small business. 
               </p>
             </div>
             <div class="project-details__links">
@@ -198,10 +198,443 @@
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
-            </div>
-            <p class="project-details__desc-para">
-              Once Hyper-V is enabled, open Hyper-V by searching in the Windows menu, then click Hyper-V Manager
-            </p>
+              </div>
+              <p class="project-details__desc-para">
+                Once Hyper-V is enabled, open Hyper-V by searching in the Windows menu, then click Hyper-V Manager.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-hyperv-manager.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                With the manager open, click New, then Virtual Machine in order to open the Virtual Machine Wizard. Provide a name for the virtual machine
+                 (Windows Server 2019). Choose Generation 1, and provide atleast 4GB of memory (4096MB). For the connection select External Switch so that
+                 the VM can communicate with computers outside of the Hyper-V Manager. Select "Create a virtual hard disk", then select "Install an operating
+                 system from a bootable CD/DVD-ROM". Finally, we will need to select the Windows Server 2019 ISO installer. This can be found on Microsoft's
+                 website where evaluation copies are provided. Click finish to create the virtual machine.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-hyperv-vmcreation.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Double click the newly created virtual machine to launch the VM connection. Click start to power it on. Once powered on you will see the
+                the setup for Windows Server 2019.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-installer.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click next, then click install. Select "Windows Server 2019 (Desktop Experience)", then click next. Select Custom, then select the hard
+                disk and click next. Windows will begin installing Windows Server 2019. Once complete, the VM will restart. Create a password for the 
+                built in administrator account and click finish.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-admin-password.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Once finished you should see this screen.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-manager.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next we will rename the Server. Click the WIndows start search in the bottom left corner. Search for "workgroup" then click "Change
+                workgroup name". Rename the PC to your choice name. Restart the VM for the change to take effect.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-rename.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Open the server manager. Click manage, then "Add roles and features". 
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-manager-addroles.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Keep clicking next until you reach the Server Roles tab.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-manager-serverroles.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select "Active Directory Domain Services". Click "Add Features". Click next until you reach the confirmation menu, then click install.
+                Close the Window once the installation is complete.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-ad-installation.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click the flag with the yellow hazard sign. Click "promote this server to a domain controller".
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-ad-postdeployment.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select "Add a new forest" and specify a domain name. Click next. Set a DSRM password. Click next until the prerequisites check, then click install.
+              </p>
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-ad-deploymentconfig.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-ad-installationstart.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next, we will create some users inside our domain. Click the Windows start menu, then click "Windows Administrative Tools", then click
+                "Active Directory Users and Computers". Right click your domain name on the left panel then click New > User. Enter the first and last
+                name of the user and specify a login username and password.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-ad-newuser.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Create additional users as needed.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-ad-newuser2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next, we will create network shares that users can store files in. Open the server manager and click "File and Storage Services". Then
+                click "Shares". 
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-file-storage-services.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Right click in the empty space below the NETLOGON and SYSVOL shares and click "New Share...". Select SMB Share - Quick and click next. Click next again.
+                Enter a share name and description. Ensure proper permissions are given to users as needed. Click next and create the share.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-share-creation.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Create additional shares as needed.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-shares.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next, we will disable the built in firewall since pfSense will function as the primary firewall. Open the start menu and search for Windows Defender Firewall.
+                Open it and click "Turn Windows Defender Firewall on or off" on the left side of the window.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-disable-firewall.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                To finish configuration, we will need to set a static IP address and point the server to our pfSense gateway. Open the start menu and click Control Panel.
+                Then click "Network and Internet" and "Network and Sharing Center". Click "Change adapter settings" and right click the Hyper-V Network adapter. Open
+                the properties menu then select IPv4. Open the IPv4 properties and set a static IP and default gateway. The static IP should be something outside of pfSense's
+                DHCP scope and the default gateway should be the IP address of pfSense.
+              
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-server-set-static.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                This concludes the basic configuration for our server. Next we will create client VM's and join them to the domain we created.
+              </p>
+              <h3 class="project-details__content-title">Creating client VMs and joining them to the domain</h3>
+              <p class="project-details__desc-para">
+                In this section we will install client VMs and join them to our domain. First, open Hyper-V manager on the host machine. We can use the
+                quick create feature to create a VM running Windows 10 Enterprise.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-hyperv-quickcreate.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Ensure that the network is set to "External Switch" so that the machine can communicate with the rest of the network. Then click
+                "Create Virtual Machine". Hyper-V will then automatically download the operating system and load it as a VM.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-hyperv-quickcreate2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Once the VM is created, launch it by double clicking it inside the Hyper-V manager. Then click "Start". Next we will begin
+                the Windows 10 setup.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click next until you reach the sign in page. Click "Domain join instead" in the bottom left. Then create a local account for administrative
+                purposes.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click next when prompted to create a password. We will be setting a password later in order to bypass the security questions. Turn off all
+                privacy settings that click Accept. Once setup is complete you will see the login screen. Click Sign In.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                We will first change the password for the local admin account. Use Ctr + Alt + End to access the login options. Select change a password,
+                then setup a password. Note: On a physical machine this will be Ctr + Alt + Del instead of End.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next we will change the DNS server. Open Control Panel and click View network status and tasks. Click change adapter settings on the left.
+                Then open the Ethernet properties and go to IPv4 properties. Select "Use the following DNS server addresses" then enter the IP of the server
+                we set up previously. Click OK to confirm.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next we will rename the PC. Open control panel and search "rename". Click "Rename this computer" to
+                access the System Properties. First click Change at the bottom of the window and rename the computer. Then click OK to confirm the name.
+                Restart the PC as requested.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                At this point we will join the PC to the domain. Log back in after the restart and return to the System Properties. Click on Network ID.
+                Select the first option and click next. Select My company uses a network with a domain. Click next. Enter the credentials for the admin domain
+                account.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup7.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Enter the credentials of the domain admin account and click OK. Restart the computer as requested.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup8.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now that the computer is on the domain, we now have the Other User option and can log into domain accounts. Click Other User and enter
+                the credentials for the user who will be primarily using the computer.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup9.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                This concludes the setup for adding a Windows 10 machine to the domain. If you created any server shares those can be mapped at this point. Additional
+                VMs can be created as needed.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup10.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/windows-10-setup11.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <h3 class="project-details__content-title">Installing vSphere</h3>
+              <p class="project-details__desc-para">
+                In this section we will setup the vSphere components, starting with ESXi. First grab the ESXi ISO from VMware's website.
+                You will be required to make a VMware account in order to access the download page.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-iso-download.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Once downloaded we will use Rufus again in order to create a bootable USB.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-rufus.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                After the bootable USB is created, insert the USB drive into the computer we will be installing ESXi on. Once the computer
+                boots you will see the ESXi setup screen.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-installation1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Press enter to continue. Then press F11 to accept the TOS. Now configure a root password
+                for the machine. Once finished you will be prompted to reboot the system. Press enter.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-installation2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Upon reboot you will be asked for the root password. Once entered you will be shown a screen with the
+                management interface. Copy that IP address and enter it into a web browser on a seperate PC. Log in
+                using the credentials you set up previously. You will now be logged into the ESXI web interface.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-web-interface.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <h3 class="project-details__content-title">Installing Security Onion on vSphere</h3>
+              <p class="project-details__desc-para">
+                Now that the hypervisor is set up. We will now install our Security Onion as virtual machine. Security Onion will
+                function as our Security and Event Management System. It will take capture logs and networking traffic and aggregate
+                it in a way that is easy to search and manage.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/image"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Enter Text.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/image"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Enter Text.
+              </p>
+
+
             </div>
           </div>
         </div>

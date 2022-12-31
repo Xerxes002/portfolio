@@ -188,9 +188,13 @@ textarea {
 .home-hero {
   color: #fff;
   background: linear-gradient(to right, rgba(6, 35, 61, 0.8), rgba(0, 0, 0, 0.8)), url(../../assets/jpeg/graham-space.jpg);
+
+  background-attachment: fixed;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
-  min-height: 80rem;
+
   max-height: 120rem;
   position: relative; }
   @media only screen and (max-width: 37.5em) {
@@ -482,7 +486,7 @@ textarea {
   .project-details__desc-para {
     font-size: 1.8rem;
     line-height: 1.7;
-    color: grey;
+    color: rgb(61, 61, 61);
     margin-bottom: 2rem; }
 
 .project-details__tools-used {
