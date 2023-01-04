@@ -286,7 +286,7 @@ textarea {
         margin-bottom: 4rem; }
         
 .projects {      
-  background: #09153d }
+  background: hsl(228, 76%, 15%) }
   .heading-sec__main {
     color: rgb(255, 255, 255) }
     .heading-sec__sub {
@@ -426,8 +426,12 @@ textarea {
 .project-cs-hero {
   color: #fff;
   background: linear-gradient(to right, rgba(0, 98, 185, 0.8), rgba(0, 98, 185, 0.8)), url(../../assets/svg/common-bg.svg);
-  background-size: cover;
+  
+  background-attachment: fixed;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
   position: relative; }
   @media only screen and (max-width: 37.5em) {
     .project-cs-hero {
@@ -468,6 +472,24 @@ textarea {
   margin-bottom: 6rem; }
 
 .project-details__showcase-img-rufus-pfsense {
+  width: 80%;
+  margin-bottom: 6rem;
+}
+.project-details__showcase-img-shrink {
+  height: 50%;
+  width: 50%;
+  margin-bottom: 6rem;
+}
+.project-details__showcase-img-enlarge {
+  height: 130%;
+  width: 130%;
+  margin-bottom: 6rem;
+}
+.project-details__showcase-img-width-enlarge {
+  width: 120%;
+  margin-bottom: 6rem;
+}
+.project-details__showcase-img-width-shrink {
   width: 80%;
   margin-bottom: 6rem;
 }

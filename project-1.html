@@ -77,12 +77,10 @@
     </header>
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
-        <h1 class="heading-primary">Cybersecurity Homelab</h1>
+        <h1 class="heading-primary">Building a Cybersecurity Homelab</h1>
         <div class="project-cs-hero__info">
           <p class="text-primary">
-            Lorem ipsum dolor sit amet but as consectetur adipisicing elit. Dignissimos
-            in numquam incidunt earum quaerat cum fuga, atque similique natus
-            nobis sit.
+            &nbsp 
           </p>
         </div>
         <div class="project-details__tools-used">
@@ -103,9 +101,16 @@
       <div class="main-container">
           <div class="project-details__content-main">
             <div class="project-details__desc">
+              <br>
+              <br>
               <h3 class="project-details__content-title">Building a Cybersecurity Homelab</h3>
               <p class="project-details__desc-para">
-                For this project, the goal is to simulate a enterprise network that we can then monitor and test for vulnerabilities.
+                In Cyberseurity, it can be difficult to implement security concepts without testing it first in a controlled environment where
+                downtime is an option.
+                
+              </p>
+              <p class="project-details__desc-para">
+                With that in mind, I created this project to simulate an enterprise network that we can then monitor and test for vulnerabilities.
                 This guide will walk through configuring, optimizing, and securing an I.T. environment for a small business. 
               </p>
             </div>
@@ -114,8 +119,8 @@
 
                 <ul class="material-list">
                   <li>-PC running pfSense (Core 2 Duo, 4gb Ram, 500gb HDD)</li>
-                  <li>-PC running HyperV (Ryzen 7 5800x, 3080ti, 64gb RAM, 2tb NVME SSD)</li>
-                  <li>-PC running vSphere (i7 8700, 1080ti, 16gb RAM, 500gb NVME SSD)</li>
+                  <li>-PC running HyperV w/ Windows Server 2019 and 2x Windows 10 Machines (Ryzen 7 5800x, 3080ti, 64gb RAM, 2tb NVME SSD)</li>
+                  <li>-PC running vSphere w/ Security Onion (i7 8700, 1080ti, 16gb RAM, 500gb NVME SSD)</li>
                   <li>-USB device</li>
                   <li>-Managed Switch w/ Span port</li>
                 </ul>
@@ -146,7 +151,7 @@
               <p class="project-details__desc-para">
                 To start, downloaded the ISO image from pfSense's website and create a bootable USB using Rufus.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img-shrink">
                 <img
                   src="./assets/png/rufus-pfsense.png"
                   alt="Project Image"
@@ -185,7 +190,7 @@
               <h3 class="project-details__content-title">Installing HyperV and Windows Server 2019</h3>
               <p class="project-details__desc-para">
                 In an enterprise network, servers can be installed on a hypervisor. This allows for easier deployment and the ability
-                to backup a server through the hypervisor. In our lab, we will be using Hyper-V to host Windows Server 2019 and additional Windows
+                to create snapshots. In our lab, we will be using Hyper-V to host Windows Server 2019 and additional Windows
                 10 machines.
               </p>
               <p class="project-details__desc-para">
@@ -610,28 +615,490 @@
               <h3 class="project-details__content-title">Installing Security Onion on vSphere</h3>
               <p class="project-details__desc-para">
                 Now that the hypervisor is set up. We will now install our Security Onion as virtual machine. Security Onion will
-                function as our Security and Event Management System. It will take capture logs and networking traffic and aggregate
-                it in a way that is easy to search and manage.
+                function as our Security and Event Management System (SIEM). It will take capture logs and networking traffic and aggregate
+                it in a way that is easy to search, manage, and visualize. Head over to https://github.com/Security-Onion-Solutions/securityonion/blob/master/VERIFY_ISO.md
+                and download the ISO. Before we can upload the ISO to ESXi we first need to create a datastore. Right click "Storage" on the left panel menu and
+                click "New Datastore".
               </p>
               <div class="project-details__showcase-img-rufus-pfsense">
                 <img
-                  src="./assets/png/image"
+                  src="./assets/png/vsphere-esxi-create-datastore1.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
               <p class="project-details__desc-para">
-                Enter Text.
+                Select "Create new VMFS datastore" and click next. Leave the default partioning options and click next. Finally, click finish to create the datastore.
               </p>
               <div class="project-details__showcase-img-rufus-pfsense">
                 <img
-                  src="./assets/png/image"
+                  src="./assets/png/vsphere-esxi-create-datastore2.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
               <p class="project-details__desc-para">
-                Enter Text.
+                Open the newly created Datastore. Click "Datastore browser". 
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-datastore3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click upload and select the Security Onion ISO to upload it. Once uploaded it will appear in the datastore.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-datastore4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we are ready to create the VM. Go to the Virtual Machines tab and click "Create/Register VM". The new virtual machine wizard
+                will start. Select Create a new virtual machine and click next.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-vm1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Enter a name for the virtual machine (ie. Security Onion). For the guest OS family select Linux and for the version
+                select Ubuntu Linux (64-bit).
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-vm2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select the datastore we previously created then click next. Now we will allocate resources for the Security Onion VM. In my
+                VM I am allocating 4 cores, 12GB RAM, and 200GB of Storage. We also will need to create an additional adapter. Click create
+                virtual adapter and ensure there are two virtual adapters. Once done click next then click finish to create the VM.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-vm3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-vm4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-vm5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Before we start the VM, we need to ensure the VM boots the Security Onion ISO. Open the VM page and click edit. Then CD/DVD Drive 1 change
+                "Host Device" to "Datastore ISO File". Select the ISO from the datastore and click save.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/vsphere-esxi-create-vm6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click power on. Click the VM window to expand it. If the ISO successfully loads
+                you will be greeted with the Security Onion Installer. Select the first option and click next.
+                You will then have to create an administrator account. Once finished the computer will reboot.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Once rebooted login with account we created earlier. Now we will configure Security Onion. Select yes and press enter to continue.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we need to select the install type. Choose STANDALONE and press ok. Type agree to accept the license agreement and press ok to continue.
+                Leave the default hostname and continue.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we will select the management NIC for Security Onion. Select the first option using spacebar then select ok to continue.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select static and press continue. Now set a static IP to an IP address that is outside the DHCP scope.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now enter the IP of the PfSense gateway.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation7.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                We will now add our DNS servers to Security Onion. 
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation8.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now enter the domain we created previously on Windows Server.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation9.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select standard and continue. Select Direct and press continue. 
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation10.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation11.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Add the second NIC to Security Onion.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation12.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now enter the network using CIDR form.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation13.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Leave all the services on and continue.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation14.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Enter an email to be used to log into the dashboard. Enter a password and select ok to continue.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation15.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation16.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select IP and continue. 
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation17.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Select no when asked to configure NTP servers.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation18.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Confirm the selected install options. Select yes and press enter to begin the installation.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation19.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Once installation is complete the machine will reboot.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-installation20.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we will log into the web interface. Open a web browser and go to the IP we assigned earlier.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-overview.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <h3 class="project-details__content-title">Send mirrored network traffic to Security Onion</h3>
+              <p class="project-details__desc-para">
+                At this point Security Onion is installed but we have no information feeding to it. First we will capture all network traffic leaving and entering our subnet. To do this
+                we will mirror the port on our switch that is connected to our PfSense machine.
+              </p>
+              <p class="project-details__desc-para">
+                First, we will ensure our ESXi settings are correct. We will need a virtual switch to connect both of Security Onion's virtual interfaces.
+                Right click Networking on the left bar and select "Create a virtual switch". Name the switch Mirror, and ensure promiscuous mode is enabled.
+                Lastly, we will connect our 2nd physical interface to this switch. Click add to finish.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/esxi-switch.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Next, create a port group by right clicking Networking and selecting "Create Port Group". Name the port group mirror and select the switch we just created. Then make sure the group
+                is set to inherit security settings from the switch. Click add to finish.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/esxi-switch2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we will begin mirroring traffic on our switch and send it to Security Onion. Go to the IP of your managed switch to access the web interface. 
+                Now go to the port mirror settings on the switch. Select the port that the mirroring traffic will be sent to. Then select which port to capture traffic.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/tp-link-mirror.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                At this point Security Onion is recieving network traffic from our mirrored port. Log back into the web interface for Security Onion. Then click Kibana on the left bar under tools.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/security-onion-kibana1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/security-onion-kibana2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Kibana is a tool which allows for visualization and filtering of logs. Scroll down and you will see network traffic being captured.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/security-onion-kibana3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                ElasticSearch is what is running under Kibana and allows us to filter logs. We can filter by destination ip/port, source ip/port, along with many other methods of filtering logs.
+              </p>
+              <div class="project-details__showcase-img-shrink">
+                <img
+                  src="./assets/png/security-onion-kibana4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <h3 class="project-details__content-title">Installing WinLogBeat</h3>
+              <p class="project-details__desc-para">
+                In addition to capturing network traffic, we can use an agent to capture logs off of our Windows machines. To do this we will be using WinLogBeat to capture event viewer logs.
+                First go to the main Security Onion web interface and click downloads on the left. Then click WinLogBeat to download the agent.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now open the Windows Server VM and transfer the agent. Then open the installer and click install.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Open the example yml file with notepad. Ensure System and Security logs are being recorded, and add the IP of the Security Onion machine under
+                output.logstash. Once finished save the file with the name "winlogbeat.yml".
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat9.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now start the WinLogBeat service. Ensure that the service is running.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat8.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                At this point WinLogBeat is sending event viewer logs to our Security Onion machine. Return to Kibana and click on hosts. Look for the newly added server.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat10.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                head over to the Discover tab on the left bar. We can search specific event IDs through Kibana.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/winlogbeat11.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Event code 4624 will show successful logons. Type event.code: 4624 in the search bar at the top and press enter.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/winlogbeat12.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Searching by event code allows for easily finding specific events. Using filters we can also see when domain users are created, failed login attempts, and other security events.
+              </p>
+              <h3 class="project-details__content-title">Conclusion</h3>
+              <p class="project-details__desc-para">
+                This concludes the lab. By building a homelab using enterprise tools we have set ourselves up for future labs where we will test vulnerabilities and perform incident response by implementing security measures.
+
               </p>
 
 
