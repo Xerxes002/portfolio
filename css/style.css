@@ -465,14 +465,19 @@ textarea {
     margin-bottom: 3rem; }
     @media only screen and (max-width: 37.5em) {
       .project-details__content-title {
-        font-size: 2.4rem; } }
+        font-size: 2.4rem; }
+
+       }
+       
+
 
 .project-details__showcase-img-cont {
   width: 100%;
   margin-bottom: 6rem; }
 
 .project-details__showcase-img-rufus-pfsense {
-  width: 80%;
+  width: 90%;
+  height: 90%;
   margin-bottom: 6rem;
 }
 .project-details__showcase-img-shrink {
@@ -548,7 +553,15 @@ textarea {
   line-height: 1.7;
   color: grey;
 }
-
+.table-of-contents {
+  margin: 0 0;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: rgb(53, 53, 53);
+  scroll-margin-top: 100px; 
+}
+.anchor {
+  display: block; position: relative; top: -95px; visibility: hidden;}
 
 .header {
   position: fixed;
@@ -693,7 +706,8 @@ textarea {
     margin-top: 2rem;
     color: #eee;
     font-size: 1.5rem;
-    line-height: 1.7; }
+    line-height: 1.7;
+    white-space: nowrap;  }
   .main-footer__social-cont {
     margin-top: 2rem; }
   .main-footer__icon {

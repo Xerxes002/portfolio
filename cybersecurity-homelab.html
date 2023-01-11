@@ -103,9 +103,56 @@
             <div class="project-details__desc">
               <br>
               <br>
-              <h3 class="project-details__content-title">Building a Cybersecurity Homelab</h3>
+              <!--"Table of Contents"-->
+              <h3 class="project-details__content-title">
+                Table of contents
+              </h3>
+              <ul class="table-of-contents">
+                  <li class="toc-wrapper">
+                    <a href="#Introduction">1. Introduction</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Materials_Used">2. Materials Used</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Creating_a_topology_diagram">3. Creating a topology diagram</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Installing_pfSense">4. Installing pfSense</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Installing_HyperV">5. Installing HyperV and Windows Server 2019</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Creating_client_VMs">6. Creating client VMs and joining them to the domain</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Installing_vSphere">7. Installing vSphere</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Installing_SO">8. Installing Security Onion</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Sending_network_traffic">9. Sending network traffic to Security Onion</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Installing_WinLogBeat">10. Sending event viewer logs to Security Onion using WinLogBeat</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Sending_pfsense_logs">11. Sending pfSense logs to Security Onion</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Conclusion">12. Conclusion</a>
+                  </li>
+
+                  
+                </ul>
+            </div>
+            <div class="project-details__links">
+              <h3 class="project-details__content-title">Introduction</h3>
+              <a class="anchor" id="Introduction"></a>
               <p class="project-details__desc-para">
-                In Cyberseurity, it can be difficult to implement security concepts without testing it first in a controlled environment where
+                In Cybersecurity, it can be difficult to implement security concepts without testing them first in a controlled environment where
                 downtime is an option.
                 
               </p>
@@ -115,19 +162,23 @@
               </p>
             </div>
             <div class="project-details__links">
+              <a class="anchor" id="Materials_Used"></a>
               <h3 class="project-details__content-title">Materials Used</h3>
 
                 <ul class="material-list">
                   <li>-PC running pfSense (Core 2 Duo, 4gb Ram, 500gb HDD)</li>
                   <li>-PC running HyperV w/ Windows Server 2019 and 2x Windows 10 Machines (Ryzen 7 5800x, 3080ti, 64gb RAM, 2tb NVME SSD)</li>
-                  <li>-PC running vSphere w/ Security Onion (i7 8700, 1080ti, 16gb RAM, 500gb NVME SSD)</li>
+                  <li>-PC running vSphere w/ Security Onion (i7 8700, 1080, 16gb RAM, 500gb NVME SSD)</li>
                   <li>-USB device</li>
                   <li>-Managed Switch w/ Span port</li>
                 </ul>
               </p>
-
+              
             <div class="project-details__links">
-              <h3 class="project-details__content-title">Creating a topology diagram</h3>
+              <a class="anchor" id="Creating_a_topology_diagram"></a>
+              <h3 class="project-details__content-title">
+                Creating a topology diagram
+              </h3>
               <p class="project-details__desc-para">
                 To start, it is important to create a topology diagram of the network help outline what devices will be placed inside the network
                 and how they will be connected to eachother. In my setup, I am using a dedicated computer for pfSense. However, I will be using 
@@ -141,7 +192,10 @@
                 />
             
             <div class="project-details__links">
-              <h3 class="project-details__content-title">Setting up pfSense</h3>
+              <a class="anchor" id="Installing_pfSense"></a>
+              <h3 class="project-details__content-title">
+                Installing pfSense
+              </h3>
               <p class="project-details__desc-para">
                 PfSense is a free router and firewall solution. This will be used to segment my home network and create a seperate subnet.
                 In addition firewall rules will be created to increase the security of the network later on. Ensure that there are two interaces present
@@ -187,6 +241,7 @@
                 in pfSense's configuration webpage.
               </p>
             <div class="project-details__links">
+              <a class="anchor" id="Installing_HyperV"></a>
               <h3 class="project-details__content-title">Installing HyperV and Windows Server 2019</h3>
               <p class="project-details__desc-para">
                 In an enterprise network, servers can be installed on a hypervisor. This allows for easier deployment and the ability
@@ -265,7 +320,7 @@
                 Next we will rename the Server. Click the WIndows start search in the bottom left corner. Search for "workgroup" then click "Change
                 workgroup name". Rename the PC to your choice name. Restart the VM for the change to take effect.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img-shrink">
                 <img
                   src="./assets/png/windows-server-rename.png"
                   alt="Project Image"
@@ -414,6 +469,7 @@
               <p class="project-details__desc-para">
                 This concludes the basic configuration for our server. Next we will create client VM's and join them to the domain we created.
               </p>
+              <a class="anchor" id="Creating_client_VMs"></a>
               <h3 class="project-details__content-title">Creating client VMs and joining them to the domain</h3>
               <p class="project-details__desc-para">
                 In this section we will install client VMs and join them to our domain. First, open Hyper-V manager on the host machine. We can use the
@@ -474,7 +530,7 @@
                 We will first change the password for the local admin account. Use Ctr + Alt + End to access the login options. Select change a password,
                 then setup a password. Note: On a physical machine this will be Ctr + Alt + Del instead of End.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img-shrink">
                 <img
                   src="./assets/png/windows-10-setup4.png"
                   alt="Project Image"
@@ -486,7 +542,7 @@
                 Then open the Ethernet properties and go to IPv4 properties. Select "Use the following DNS server addresses" then enter the IP of the server
                 we set up previously. Click OK to confirm.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img-shrink">
                 <img
                   src="./assets/png/windows-10-setup5.png"
                   alt="Project Image"
@@ -498,7 +554,7 @@
                 access the System Properties. First click Change at the bottom of the window and rename the computer. Then click OK to confirm the name.
                 Restart the PC as requested.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img-shrink">
                 <img
                   src="./assets/png/windows-10-setup6.png"
                   alt="Project Image"
@@ -556,6 +612,7 @@
                   class="project-details__showcase-img"
                 />
               </div>
+              <a class="anchor" id="Installing_vSphere"></a>
               <h3 class="project-details__content-title">Installing vSphere</h3>
               <p class="project-details__desc-para">
                 In this section we will setup the vSphere components, starting with ESXi. First grab the ESXi ISO from VMware's website.
@@ -612,7 +669,8 @@
                   class="project-details__showcase-img"
                 />
               </div>
-              <h3 class="project-details__content-title">Installing Security Onion on vSphere</h3>
+              <a class="anchor" id="Installing_SO"></a>
+              <h3 class="project-details__content-title">Installing Security Onion</h3>
               <p class="project-details__desc-para">
                 Now that the hypervisor is set up. We will now install our Security Onion as virtual machine. Security Onion will
                 function as our Security and Event Management System (SIEM). It will take capture logs and networking traffic and aggregate
@@ -921,7 +979,8 @@
                   class="project-details__showcase-img"
                 />
               </div>
-              <h3 class="project-details__content-title">Send mirrored network traffic to Security Onion</h3>
+              <a class="anchor" id="Sending_network_traffic"></a>
+              <h3 class="project-details__content-title">Sending network traffic to Security Onion</h3>
               <p class="project-details__desc-para">
                 At this point Security Onion is installed but we have no information feeding to it. First we will capture all network traffic leaving and entering our subnet. To do this
                 we will mirror the port on our switch that is connected to our PfSense machine.
@@ -997,7 +1056,8 @@
                   class="project-details__showcase-img"
                 />
               </div>
-              <h3 class="project-details__content-title">Installing WinLogBeat</h3>
+              <a class="anchor" id="Installing_WinLogBeat"></a>
+              <h3 class="project-details__content-title">Sending event viewer logs to Security Onion using WinLogBeat</h3>
               <p class="project-details__desc-para">
                 In addition to capturing network traffic, we can use an agent to capture logs off of our Windows machines. To do this we will be using WinLogBeat to capture event viewer logs.
                 First go to the main Security Onion web interface and click downloads on the left. Then click WinLogBeat to download the agent.
@@ -1063,7 +1123,18 @@
                 />
               </div>
               <p class="project-details__desc-para">
-                At this point WinLogBeat is sending event viewer logs to our Security Onion machine. Return to Kibana and click on hosts. Look for the newly added server.
+                At this point WinLogBeat is sending event viewer logs to our Security Onion machine. But we have not given permission for Security Onion to parse the logs.
+                Open the terminal for Security Onion and type sudo so-allow. Then Select b for Logstash beat, and enable the subnet containing the Windows VMs.
+              </p>
+              <div class="project-details__showcase-img-rufus-pfsense">
+                <img
+                  src="./assets/png/so-allow-logstash.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we are ready to view the logs in Security Onion. Open Kibana and click on hosts. Look for the newly added server.
               </p>
               <div class="project-details__showcase-img-rufus-pfsense">
                 <img
@@ -1075,7 +1146,7 @@
               <p class="project-details__desc-para">
                 head over to the Discover tab on the left bar. We can search specific event IDs through Kibana.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img-enlarge">
                 <img
                   src="./assets/png/winlogbeat11.png"
                   alt="Project Image"
@@ -1095,6 +1166,80 @@
               <p class="project-details__desc-para">
                 Searching by event code allows for easily finding specific events. Using filters we can also see when domain users are created, failed login attempts, and other security events.
               </p>
+              <a class="anchor" id="Sending_pfsense_logs"></a>
+              <h3 class="project-details__content-title">Sending pfSense logs to Security Onion</h3>
+              <p class="project-details__desc-para">
+                Now we will send pfSense logs to Security Onion. Log into the pfSense's web interface and navigate to Status > System Logs. 
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Click on settings.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Scroll to the bottom and click the checkbox to enable remote logging. Under remote log servers, type in the IP of our Security Onion machine using port 514. Lastly we will specify which types of logs
+                will be sent. In my case I will be sending Firewall Events. Click save to finish.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now we need to these logs to be parsed by Security Onion. Return to the Security Onion shell and type sudo so-allow. Then select s for syslog device and type in the IP of our pfSense machine. 
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                At this point we can verify logs are being recieved by logging back into Kibana and clicking pfSense under Security Onion - Modules. 
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                As we can see, Security Onion is recieving the pfSense syslogs for firewall events. We can easily filter by IP or other parameters.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/pfsense-logs7.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+
+
+
+              <a class="anchor" id="Conclusion"></a>
               <h3 class="project-details__content-title">Conclusion</h3>
               <p class="project-details__desc-para">
                 This concludes the lab. By building a homelab using enterprise tools we have set ourselves up for future labs where we will test vulnerabilities and perform incident response by implementing security measures.
