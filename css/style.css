@@ -187,7 +187,7 @@ textarea {
 
 .home-hero {
   color: #fff;
-  background: linear-gradient(to right, rgba(6, 35, 61, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/jpeg/graham-space.jpg);
+  background: linear-gradient(to right, rgba(6, 35, 61, 0.8), rgba(0, 0, 0, 0.8)), url("../assets/jpeg/graham-space.jpg");
 
   background-attachment: fixed;
   background-position: center;
