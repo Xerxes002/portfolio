@@ -347,7 +347,7 @@ textarea {
           font-size: 1.7rem; } }
 
 .contact {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgba(0, 0, 0, 0.959)), url(../../assets/svg/common-bg.svg);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgba(0, 0, 0, 0.959)), url("../../assets/svg/common-bg.svg");
   background-size: cover;
   background-position: center; }
   .contact__form-container {
