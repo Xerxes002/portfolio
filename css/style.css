@@ -286,7 +286,7 @@ textarea {
         margin-bottom: 4rem; }
         
 .projects {      
-  background: linear-gradient(to right, rgba(0, 7, 22, 0.938), rgba(0, 0, 0, 0.918)), url("../../assets/svg/pexels-jakub-novacek.jpg");
+  background: linear-gradient(to right, rgba(0, 7, 22, 0.938), rgba(0, 0, 0, 0.918)), url("../assets/svg/pexels-jakub-novacek.jpg");
   background-size: cover;
   background-position: center;
    }
@@ -347,7 +347,7 @@ textarea {
           font-size: 1.7rem; } }
 
 .contact {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgba(0, 0, 0, 0.959)), url("../../assets/svg/common-bg.svg");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgba(0, 0, 0, 0.959)), url("../assets/svg/common-bg.svg");
   background-size: cover;
   background-position: center; }
   .contact__form-container {
