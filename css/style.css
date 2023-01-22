@@ -466,7 +466,8 @@ textarea {
   .project-details__content-title {
     font-weight: 700;
     font-size: 2.8rem;
-    margin-bottom: 3rem; }
+    margin-bottom: 3rem; 
+    padding-top: 30px; }
     @media only screen and (max-width: 37.5em) {
       .project-details__content-title {
         font-size: 2.4rem; }
@@ -560,7 +561,8 @@ textarea {
   margin: 0 0;
   font-size: 1.8rem;
   line-height: 1.7;
-  color: grey;
+  color: rgb(53, 53, 53);
+  padding-bottom: 50px
 }
 .table-of-contents {
   margin: 0 0;
