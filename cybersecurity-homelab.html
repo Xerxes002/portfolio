@@ -92,6 +92,7 @@
             <div class="tools__tool">Windows Server 2019</div>
             <div class="tools__tool">Windows 10 Enterprise</div>
             <div class="tools__tool">Security Onion</div>
+            <div class="tools__tool">Kali Linux</div>
             
           </div>
 
@@ -105,7 +106,7 @@
               <br>
               <!--"Table of Contents"-->
               <h3 class="project-details__content-title">
-                Table of contents
+                Contents
               </h3>
               <ul class="table-of-contents">
                   <li class="toc-wrapper">
@@ -142,7 +143,20 @@
                     <a href="#Sending_pfsense_logs">11. Sending pfSense logs to Security Onion</a>
                   </li>
                   <li class="toc-wrapper">
-                    <a href="#Conclusion">12. Conclusion</a>
+                    <a href="#Using_Playbook">12. Using Playbook to enable a play</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Installing_Kali">13. Installing Kali Linux</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Password_Spray">14. Password Spray attack using Kerbrute</a>
+                  </li>
+                  <li class="toc-wrapper">
+                    <a href="#Analyzing">15. Analyzing the alert</a>
+                  </li>
+                  
+                  <li class="toc-wrapper">
+                    <a href="#Conclusion">16. Conclusion</a>
                   </li>
 
                   
@@ -218,7 +232,7 @@
                 Change the boot order in the computer's BIOS to boot from the USB stick.
                 pfSense will now start it's installation setup.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/pfsense-installer.png"
                   alt="Project Image"
@@ -229,7 +243,7 @@
                 Accept all defaults and select a drive to install pfSense to. Ensure that you have both a WAN and LAN IP address. The LAN IP will Server
                 as the IP for management.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/pfsense-shell.png"
                   alt="Project Image"
@@ -252,7 +266,7 @@
                 To start, we will first need to install Hyper-V on the host machine. My host machine is running Windows 11 Pro. It is important to
                 note that Hyper-V cannot be installed on Windows 10/11 Home. First, we need to ensure that Hyper-V is enabled in Windows Features.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windowsfeatures-hyperv.png"
                   alt="Project Image"
@@ -262,7 +276,7 @@
               <p class="project-details__desc-para">
                 Once Hyper-V is enabled, open Hyper-V by searching in the Windows menu, then click Hyper-V Manager.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-hyperv-manager.png"
                   alt="Project Image"
@@ -276,7 +290,7 @@
                  system from a bootable CD/DVD-ROM". Finally, we will need to select the Windows Server 2019 ISO installer. This can be found on Microsoft's
                  website where evaluation copies are provided. Click finish to create the virtual machine.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-hyperv-vmcreation.png"
                   alt="Project Image"
@@ -287,7 +301,7 @@
                 Double click the newly created virtual machine to launch the VM connection. Click start to power it on. Once powered on you will see the
                 the setup for Windows Server 2019.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-installer.png"
                   alt="Project Image"
@@ -299,7 +313,7 @@
                 disk and click next. Windows will begin installing Windows Server 2019. Once complete, the VM will restart. Create a password for the 
                 built in administrator account and click finish.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-admin-password.png"
                   alt="Project Image"
@@ -309,7 +323,7 @@
               <p class="project-details__desc-para">
                 Once finished you should see this screen.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-manager.png"
                   alt="Project Image"
@@ -330,7 +344,7 @@
               <p class="project-details__desc-para">
                 Open the server manager. Click manage, then "Add roles and features". 
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-manager-addroles.png"
                   alt="Project Image"
@@ -340,7 +354,7 @@
               <p class="project-details__desc-para">
                 Keep clicking next until you reach the Server Roles tab.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-manager-serverroles.png"
                   alt="Project Image"
@@ -351,7 +365,7 @@
                 Select "Active Directory Domain Services". Click "Add Features". Click next until you reach the confirmation menu, then click install.
                 Close the Window once the installation is complete.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-ad-installation.png"
                   alt="Project Image"
@@ -361,7 +375,7 @@
               <p class="project-details__desc-para">
                 Click the flag with the yellow hazard sign. Click "promote this server to a domain controller".
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-ad-postdeployment.png"
                   alt="Project Image"
@@ -372,7 +386,7 @@
                 Select "Add a new forest" and specify a domain name. Click next. Set a DSRM password. Click next until the prerequisites check, then click install.
               </p>
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-ad-deploymentconfig.png"
                   alt="Project Image"
@@ -380,7 +394,7 @@
                 />
               </div>
 
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-ad-installationstart.png"
                   alt="Project Image"
@@ -392,7 +406,7 @@
                 "Active Directory Users and Computers". Right click your domain name on the left panel then click New > User. Enter the first and last
                 name of the user and specify a login username and password.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-ad-newuser.png"
                   alt="Project Image"
@@ -402,7 +416,7 @@
               <p class="project-details__desc-para">
                 Create additional users as needed.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-ad-newuser2.png"
                   alt="Project Image"
@@ -413,7 +427,7 @@
                 Next, we will create network shares that users can store files in. Open the server manager and click "File and Storage Services". Then
                 click "Shares". 
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-file-storage-services.png"
                   alt="Project Image"
@@ -424,7 +438,7 @@
                 Right click in the empty space below the NETLOGON and SYSVOL shares and click "New Share...". Select SMB Share - Quick and click next. Click next again.
                 Enter a share name and description. Ensure proper permissions are given to users as needed. Click next and create the share.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-share-creation.png"
                   alt="Project Image"
@@ -434,7 +448,7 @@
               <p class="project-details__desc-para">
                 Create additional shares as needed.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-shares.png"
                   alt="Project Image"
@@ -445,7 +459,7 @@
                 Next, we will disable the built in firewall since pfSense will function as the primary firewall. Open the start menu and search for Windows Defender Firewall.
                 Open it and click "Turn Windows Defender Firewall on or off" on the left side of the window.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-disable-firewall.png"
                   alt="Project Image"
@@ -459,7 +473,7 @@
                 DHCP scope and the default gateway should be the IP address of pfSense.
               
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-server-set-static.png"
                   alt="Project Image"
@@ -475,7 +489,7 @@
                 In this section we will install client VMs and join them to our domain. First, open Hyper-V manager on the host machine. We can use the
                 quick create feature to create a VM running Windows 10 Enterprise.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-hyperv-quickcreate.png"
                   alt="Project Image"
@@ -486,7 +500,7 @@
                 Ensure that the network is set to "External Switch" so that the machine can communicate with the rest of the network. Then click
                 "Create Virtual Machine". Hyper-V will then automatically download the operating system and load it as a VM.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-hyperv-quickcreate2.png"
                   alt="Project Image"
@@ -497,7 +511,7 @@
                 Once the VM is created, launch it by double clicking it inside the Hyper-V manager. Then click "Start". Next we will begin
                 the Windows 10 setup.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup.png"
                   alt="Project Image"
@@ -508,7 +522,7 @@
                 Click next until you reach the sign in page. Click "Domain join instead" in the bottom left. Then create a local account for administrative
                 purposes.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup2.png"
                   alt="Project Image"
@@ -519,7 +533,7 @@
                 Click next when prompted to create a password. We will be setting a password later in order to bypass the security questions. Turn off all
                 privacy settings that click Accept. Once setup is complete you will see the login screen. Click Sign In.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup3.png"
                   alt="Project Image"
@@ -566,7 +580,7 @@
                 Select the first option and click next. Select My company uses a network with a domain. Click next. Enter the credentials for the admin domain
                 account.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup7.png"
                   alt="Project Image"
@@ -576,7 +590,7 @@
               <p class="project-details__desc-para">
                 Enter the credentials of the domain admin account and click OK. Restart the computer as requested.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup8.png"
                   alt="Project Image"
@@ -587,7 +601,7 @@
                 Now that the computer is on the domain, we now have the Other User option and can log into domain accounts. Click Other User and enter
                 the credentials for the user who will be primarily using the computer.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup9.png"
                   alt="Project Image"
@@ -598,14 +612,14 @@
                 This concludes the setup for adding a Windows 10 machine to the domain. If you created any server shares those can be mapped at this point. Additional
                 VMs can be created as needed.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup10.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/windows-10-setup11.png"
                   alt="Project Image"
@@ -618,7 +632,7 @@
                 In this section we will setup the vSphere components, starting with ESXi. First grab the ESXi ISO from VMware's website.
                 You will be required to make a VMware account in order to access the download page.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-iso-download.png"
                   alt="Project Image"
@@ -628,7 +642,7 @@
               <p class="project-details__desc-para">
                 Once downloaded we will use Rufus again in order to create a bootable USB.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-rufus.png"
                   alt="Project Image"
@@ -639,7 +653,7 @@
                 After the bootable USB is created, insert the USB drive into the computer we will be installing ESXi on. Once the computer
                 boots you will see the ESXi setup screen.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-installation1.png"
                   alt="Project Image"
@@ -650,7 +664,7 @@
                 Press enter to continue. Then press F11 to accept the TOS. Now configure a root password
                 for the machine. Once finished you will be prompted to reboot the system. Press enter.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-installation2.png"
                   alt="Project Image"
@@ -662,7 +676,7 @@
                 management interface. Copy that IP address and enter it into a web browser on a seperate PC. Log in
                 using the credentials you set up previously. You will now be logged into the ESXI web interface.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-web-interface.png"
                   alt="Project Image"
@@ -678,7 +692,7 @@
                 and download the ISO. Before we can upload the ISO to ESXi we first need to create a datastore. Right click "Storage" on the left panel menu and
                 click "New Datastore".
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-datastore1.png"
                   alt="Project Image"
@@ -688,7 +702,7 @@
               <p class="project-details__desc-para">
                 Select "Create new VMFS datastore" and click next. Leave the default partioning options and click next. Finally, click finish to create the datastore.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-datastore2.png"
                   alt="Project Image"
@@ -698,7 +712,7 @@
               <p class="project-details__desc-para">
                 Open the newly created Datastore. Click "Datastore browser". 
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-datastore3.png"
                   alt="Project Image"
@@ -708,7 +722,7 @@
               <p class="project-details__desc-para">
                 Click upload and select the Security Onion ISO to upload it. Once uploaded it will appear in the datastore.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-datastore4.png"
                   alt="Project Image"
@@ -719,7 +733,7 @@
                 Now we are ready to create the VM. Go to the Virtual Machines tab and click "Create/Register VM". The new virtual machine wizard
                 will start. Select Create a new virtual machine and click next.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-vm1.png"
                   alt="Project Image"
@@ -730,7 +744,7 @@
                 Enter a name for the virtual machine (ie. Security Onion). For the guest OS family select Linux and for the version
                 select Ubuntu Linux (64-bit).
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-vm2.png"
                   alt="Project Image"
@@ -742,7 +756,7 @@
                 VM I am allocating 4 cores, 12GB RAM, and 200GB of Storage. We also will need to create an additional adapter. Click create
                 virtual adapter and ensure there are two virtual adapters. Once done click next then click finish to create the VM.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-vm3.png"
                   alt="Project Image"
@@ -750,14 +764,14 @@
                 />
               </div>
 
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-vm4.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-vm5.png"
                   alt="Project Image"
@@ -768,7 +782,7 @@
                 Before we start the VM, we need to ensure the VM boots the Security Onion ISO. Open the VM page and click edit. Then CD/DVD Drive 1 change
                 "Host Device" to "Datastore ISO File". Select the ISO from the datastore and click save.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/vsphere-esxi-create-vm6.png"
                   alt="Project Image"
@@ -780,7 +794,7 @@
                 you will be greeted with the Security Onion Installer. Select the first option and click next.
                 You will then have to create an administrator account. Once finished the computer will reboot.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation1.png"
                   alt="Project Image"
@@ -790,7 +804,7 @@
               <p class="project-details__desc-para">
                 Once rebooted login with account we created earlier. Now we will configure Security Onion. Select yes and press enter to continue.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation2.png"
                   alt="Project Image"
@@ -801,7 +815,7 @@
                 Now we need to select the install type. Choose STANDALONE and press ok. Type agree to accept the license agreement and press ok to continue.
                 Leave the default hostname and continue.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation3.png"
                   alt="Project Image"
@@ -811,7 +825,7 @@
               <p class="project-details__desc-para">
                 Now we will select the management NIC for Security Onion. Select the first option using spacebar then select ok to continue.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation4.png"
                   alt="Project Image"
@@ -821,14 +835,14 @@
               <p class="project-details__desc-para">
                 Select static and press continue. Now set a static IP to an IP address that is outside the DHCP scope.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation5.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation6.png"
                   alt="Project Image"
@@ -838,7 +852,7 @@
               <p class="project-details__desc-para">
                 Now enter the IP of the PfSense gateway.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation7.png"
                   alt="Project Image"
@@ -848,7 +862,7 @@
               <p class="project-details__desc-para">
                 We will now add our DNS servers to Security Onion. 
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation8.png"
                   alt="Project Image"
@@ -858,7 +872,7 @@
               <p class="project-details__desc-para">
                 Now enter the domain we created previously on Windows Server.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation9.png"
                   alt="Project Image"
@@ -868,14 +882,14 @@
               <p class="project-details__desc-para">
                 Select standard and continue. Select Direct and press continue. 
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation10.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation11.png"
                   alt="Project Image"
@@ -885,7 +899,7 @@
               <p class="project-details__desc-para">
                 Add the second NIC to Security Onion.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation12.png"
                   alt="Project Image"
@@ -895,7 +909,7 @@
               <p class="project-details__desc-para">
                 Now enter the network using CIDR form.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation13.png"
                   alt="Project Image"
@@ -905,7 +919,7 @@
               <p class="project-details__desc-para">
                 Leave all the services on and continue.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation14.png"
                   alt="Project Image"
@@ -915,14 +929,14 @@
               <p class="project-details__desc-para">
                 Enter an email to be used to log into the dashboard. Enter a password and select ok to continue.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation15.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation16.png"
                   alt="Project Image"
@@ -932,7 +946,7 @@
               <p class="project-details__desc-para">
                 Select IP and continue. 
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation17.png"
                   alt="Project Image"
@@ -942,7 +956,7 @@
               <p class="project-details__desc-para">
                 Select no when asked to configure NTP servers.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation18.png"
                   alt="Project Image"
@@ -952,7 +966,7 @@
               <p class="project-details__desc-para">
                 Confirm the selected install options. Select yes and press enter to begin the installation.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation19.png"
                   alt="Project Image"
@@ -962,7 +976,7 @@
               <p class="project-details__desc-para">
                 Once installation is complete the machine will reboot.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-installation20.png"
                   alt="Project Image"
@@ -972,7 +986,7 @@
               <p class="project-details__desc-para">
                 Now we will log into the web interface. Open a web browser and go to the IP we assigned earlier.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-overview.png"
                   alt="Project Image"
@@ -990,7 +1004,7 @@
                 Right click Networking on the left bar and select "Create a virtual switch". Name the switch Mirror, and ensure promiscuous mode is enabled.
                 Lastly, we will connect our 2nd physical interface to this switch. Click add to finish.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/esxi-switch.png"
                   alt="Project Image"
@@ -1001,7 +1015,7 @@
                 Next, create a port group by right clicking Networking and selecting "Create Port Group". Name the port group mirror and select the switch we just created. Then make sure the group
                 is set to inherit security settings from the switch. Click add to finish.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/esxi-switch2.png"
                   alt="Project Image"
@@ -1012,7 +1026,7 @@
                 Now we will begin mirroring traffic on our switch and send it to Security Onion. Go to the IP of your managed switch to access the web interface. 
                 Now go to the port mirror settings on the switch. Select the port that the mirroring traffic will be sent to. Then select which port to capture traffic.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/tp-link-mirror.png"
                   alt="Project Image"
@@ -1022,7 +1036,7 @@
               <p class="project-details__desc-para">
                 At this point Security Onion is recieving network traffic from our mirrored port. Log back into the web interface for Security Onion. Then click Kibana on the left bar under tools.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/security-onion-kibana1.png"
                   alt="Project Image"
@@ -1062,7 +1076,7 @@
                 In addition to capturing network traffic, we can use an agent to capture logs off of our Windows machines. To do this we will be using WinLogBeat to capture event viewer logs.
                 First go to the main Security Onion web interface and click downloads on the left. Then click WinLogBeat to download the agent.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat1.png"
                   alt="Project Image"
@@ -1072,7 +1086,7 @@
               <p class="project-details__desc-para">
                 Now open the Windows Server VM and transfer the agent. Then open the installer and click install.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat2.png"
                   alt="Project Image"
@@ -1083,14 +1097,14 @@
                 Open the example yml file with notepad. Ensure System and Security logs are being recorded, and add the IP of the Security Onion machine under
                 output.logstash. Once finished save the file with the name "winlogbeat.yml".
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat4.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat9.png"
                   alt="Project Image"
@@ -1098,7 +1112,7 @@
                 />
               </div>
 
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat5.png"
                   alt="Project Image"
@@ -1108,14 +1122,14 @@
               <p class="project-details__desc-para">
                 Now start the WinLogBeat service. Ensure that the service is running.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat6.png"
                   alt="Project Image"
                   class="project-details__showcase-img"
                 />
               </div>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat8.png"
                   alt="Project Image"
@@ -1126,7 +1140,7 @@
                 At this point WinLogBeat is sending event viewer logs to our Security Onion machine. But we have not given permission for Security Onion to parse the logs.
                 Open the terminal for Security Onion and type sudo so-allow. Then Select b for Logstash beat, and enable the subnet containing the Windows VMs.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/so-allow-logstash.png"
                   alt="Project Image"
@@ -1136,7 +1150,7 @@
               <p class="project-details__desc-para">
                 Now we are ready to view the logs in Security Onion. Open Kibana and click on hosts. Look for the newly added server.
               </p>
-              <div class="project-details__showcase-img-rufus-pfsense">
+              <div class="project-details__showcase-img">
                 <img
                   src="./assets/png/winlogbeat10.png"
                   alt="Project Image"
@@ -1236,13 +1250,340 @@
                   class="project-details__showcase-img"
                 />
               </div>
+              <a class="anchor" id="Using_Playbook"></a>
+              <h3 class="project-details__content-title">Using Playbook to enable a play</h3>
+              <p class="project-details__desc-para">
+                At this point we have a steady flow of information going into Security Onion, but there are not many alerts being created. To allow the creation of
+                more alerts, we can enable and create plays to automatically create alerts based on a set of parameters. To access the playbook, go
+                to the Security Onion webpage and click Playbook on the left bar.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/playbook1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Security includes a large list of plays that covers a large amount of security scenarios. By default, these plays are given the Draft status
+                and must be manually enabled in order to start sending alerts. 
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/playbook2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                For our attack scenario, we will perform a password spraying attack using Kerberos. In the password spraying attack, we will attempt to
+                login using the same password againts multiple accounts. When the attack occurs, we want an alert to occur.
+                To start let's navigate to a play that could accomplish this. Open the edit menu for Play 155 under the community playbook.
+                
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/playbook4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Plays are written using Sigma rules which define when the play should occur. Expand the Sigma rules by expanding the box from the bottom right
+                corner.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/playbook5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                The description of the play summarizes what the play does. In this case the play detects multiple failed logins with multiple valid domain accounts
+                from a single source system using the Kerberos protocol. This play will be perfect for detecting our password spraying attack.
+              </p>
+              <p class="project-details__desc-para">
+                Now let's enable the play. Open the playbook again by clicking playbook at the top. Now navigate to the page with the play (155). Open the submenu
+                by clicking the three dots (...) and click enable.
+              </p>
+              <div class="project-details__showcase-img-shrink">
+                <img
+                  src="./assets/png/playbook6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/playbook7.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                At this point the play is enabled and will create an alert if triggered. Next, we will install Kali linux and utilize Kerbrute to perform
+                the password spray attack.
+              </p>
+              <a class="anchor" id="Installing_Kali"></a>
+              <h3 class="project-details__content-title">Installing Kali Linux</h3>
+              <p class="project-details__desc-para">
+                The tool we need to perform the attack is on Kali Linux. I will be installing Kali Linux as a VM inside VMware workstation player on my laptop. To do this first download 
+                and install VMware workstation player. Once done you will see this screen.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/vmware2.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                With the workstation player installed, head to kali.org/get-kali/ and download the prebuilt VM for VMware.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/kali1.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/kali2.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Extract the 7z file and double click the vmx file to open it in VMware. This will automatically launch the virtual machine.
+
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/kali3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                We are now at the login screen. Enter the default Username "kali" and the default password "kali" then click login.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/kali4.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                This is the Kali Linux desktop. We are now ready to install Kerbrute and procede with the password spray attack.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/kali5.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <a class="anchor" id="Password_Spray"></a>
+              <h3 class="project-details__content-title">Password Spray attack using Kerbrute</h3>
+              <p class="project-details__desc-para">
+                In our scenario our attacker has obtained a list of full names belonging to employees at Trost Electronics using Linkedin. They also
+                have managed to obtain the WiFi password, granting them access to the network that the domain controller is on.
+              </p>
+              <p class="project-details__desc-para">
+                To perform the attack we will need Kerbrute. Kerbrute is a script capable of brute forcing accounts on machines using Kerberos 
+                for authentication. First let's install Kerbrute. Open a terminal and run "pip install kerbrute".
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/kali6.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now that we have all the tools we need installed, let's attempt to find the IP of the domain controller.
+                We can do this by running an Nmap scan targeting port 389. Port 389 is used for LDAP which is used alongside kerberos (port 88)
+                for authentication. By scanning port 389 we can quickly find domain controllers on a network. Additionally we will be using an
+                Nmap script show the name of the domain.
+              </p>
+              <p class="project-details__desc-para">
+                Run the following command to start the scan: "nmap -p 389 -T4 -A -v --script ldap-rootdse 192.168.1.0/24"
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/nmap1.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Scroll down until find the IP that gives information on the domain. As we can see the script has successfully found
+                 the domain controller @ 192.168.1.10 along with the domain name (trost.local).
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/nmap2.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now let's create input the names we discovered into a list. Most companies have a standard naming scheme for Active Directory
+                accounts as follows: first initial last name. Because we have the full names of the employees we can easily
+                create a list of usernames for Kerbrute. 
+              </p>
+              <p class="project-details__desc-para">
+                Open up a new terminal and navigate to the directory we will create the text file in.
+              </p>
+              <div class="project-details__showcase-img-shrink">
+                <img
+                  src="./assets/png/kerbrute1.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now use the following command to create a text file called users.txt.
+              </p>
+              <p class="project-details__desc-para">
+                cat > users.txt
+              </p>
+              <div class="project-details__showcase-img">
+                <img
+                  src="./assets/png/kerbrute.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Now type out the first initial followed by the last name of each employee, one per line. Press 
+                Ctr + D to exit the file editor.
+              </p>
+              <div class="project-details__showcase-img-shrink">
+                <img
+                  src="./assets/png/kerbrute2.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                With the text file created we have everything we need to launch the Kerbrute attack. Open a new terminal
+                and type Kerbrute to verify Kerbrute was installed.
+              </p>
+              <div class="project-details__showcase-img">
+                <img
+                  src="./assets/png/kerbrute3.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                We will enter a commonly used password
+                and determine if any of the accounts in our list are using the password. Use the following
+                command to launch the Kerbrute attack againts our Domain Controller. 
+              </p>
+              <p class="project-details__desc-para">
+                kerbrute passwordspray --dc 192.168.1.10 -domain trost.local /home/kali/Documents/users.txt P@ssw0rd!
+              </p>
+              <div class="project-details__showcase-img">
+                <img
+                  src="./assets/png/kerbrute4.PNG"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Kerbrute was able to successfully find a user with the password (Passw0rd!). We can see which account was successfully logged into listed
+                as "Stupendous". In this case the account was MHolt. With this login information we can perform additional attacks. However, we will end the
+                attack and instead we will take a look at the alerts that were created.
+              </p>
+
+              
+              <a class="anchor" id="Analyzing"></a>
+              <h3 class="project-details__content-title">Analyzing the alert</h3>
+              <p class="project-details__desc-para">
+                Let's take a look at the alerts that were created. Go to the hunt tab. We can filter
+                the event by the event ID 4771.
+              </p>
+              <div class="project-details__showcase-img-shrink">
+                <img
+                  src="./assets/png/alert1.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                As we can see there were a large amount of alerts created in a short time span.
+              </p>
+              <div class="project-details__showcase-img">
+                <img
+                  src="./assets/png/alert4.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Let's take a look at one of the alerts. Expand an alert by clicking the drop down arrow.
+              </p>
+              <div class="project-details__showcase-img">
+                <img
+                  src="./assets/png/alert2.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Here we can see detailed information about the alert, such as where the alert occurred and what type of action
+                triggered the alert. We can also see which account the attack was attempted againts. In this alert the target user Name
+                was vcarter.
+              </p>
+              <div class="project-details__showcase-img">
+                <img
+                  src="./assets/png/alert3.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                Let's escalate the alert by clicking the escalate button next to the drop down arrow.
+              </p>
+              <div class="project-details__showcase-img-shrink">
+                <img
+                  src="./assets/png/alert5.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                We can view escalated alerts in the Cases tab. Now that we have escalated the alert other analysts
+                can easily view it and begin incident response.
+              </p>
+              <div class="project-details__showcase-img-enlarge">
+                <img
+                  src="./assets/png/alert6.png"
+                  alt="Project Image"
+                  class="project-details__showcase-img"
+                />
+              </div>
+              <p class="project-details__desc-para">
+                In this case we should monitor the source IP of the attack and block the IP using our pfSense firewall.
+              </p>
+              <p class="project-details__desc-para">
+                In a future lab we will configure SOAR and deploy an IPS so that alerts trigger an action that automatically stops
+                an attack and prevents further identical attacks. With our Kerbrute attack it would be ideal to have the IPS automatically
+                block the source IP from the alert.
+              </p>
 
 
 
               <a class="anchor" id="Conclusion"></a>
               <h3 class="project-details__content-title">Conclusion</h3>
               <p class="project-details__desc-para">
-                This concludes the lab. By building a homelab using enterprise tools we have set ourselves up for future labs where we will test vulnerabilities and perform incident response by implementing security measures.
+                This concludes the lab. We have successfully configured a small enterprise network and deployed a SIEM.
+                With our SIEM deployed we now can test out a variety of attacks againts our network and further increase the security of the network.
 
               </p>
 
@@ -1254,7 +1595,7 @@
     </section>
     <footer class="main-footer">
       <div class="main-container">
-        <div class="main-footer__upper">
+        <!--div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
             <h2 class="heading heading-sm main-footer__heading-sm">
               <span>Social</span>
@@ -1299,12 +1640,12 @@
           </div>
           <div class="main-footer__row main-footer__row-2">
             <h4 class="heading heading-sm text-lt">Tristan Wartan</h4>
-            <!--p class="main-footer__short-desc">
+            <!p class="main-footer__short-desc">
               Lorem ipsum dolor sit amet but consectetur adipisicing elit facilis
               tempora explicabo quae quod deserunt
-            </p-->
+            </p>
           </div>
-        </div>
+        </div-->
 
         <div class="main-footer__lower">
           &copy; Copyright 2022. Made by

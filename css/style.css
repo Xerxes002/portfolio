@@ -286,7 +286,10 @@ textarea {
         margin-bottom: 4rem; }
         
 .projects {      
-  background: hsl(228, 76%, 15%) }
+  background: linear-gradient(to right, rgba(0, 7, 22, 0.938), rgba(0, 0, 0, 0.918)), url(../../assets/svg/pexels-jakub-novacek.jpg);
+  background-size: cover;
+  background-position: center;
+   }
   .heading-sec__main {
     color: rgb(255, 255, 255) }
     .heading-sec__sub {
@@ -344,7 +347,7 @@ textarea {
           font-size: 1.7rem; } }
 
 .contact {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.918), rgba(0, 0, 0, 0.932)), url(../../assets/svg/common-bg.svg);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgba(0, 0, 0, 0.959)), url(../../assets/svg/common-bg.svg);
   background-size: cover;
   background-position: center; }
   .contact__form-container {
@@ -416,6 +419,7 @@ textarea {
       font-weight: 600;
       font-size: 1.6rem; }
   .contact__btn {
+    
     width: 30%;
     padding: 2rem 4rem;
     font-size: 1.6rem; }
@@ -475,7 +479,12 @@ textarea {
   width: 100%;
   margin-bottom: 6rem; }
 
-.project-details__showcase-img-rufus-pfsense {
+.project-details__showcase-img {
+  width: 90%;
+  height: 90%;
+  margin-bottom: 6rem;
+}
+.project-details__showcase-img {
   width: 90%;
   height: 90%;
   margin-bottom: 6rem;
@@ -717,7 +726,7 @@ textarea {
       margin-right: 0; }
   .main-footer__lower {
     padding: 4rem 0;
-    border-top: 1px solid #444;
+    border-top: 1px solid rgb(0, 0, 0);
     color: #eee;
     font-size: 1.2rem;
     text-align: left;
